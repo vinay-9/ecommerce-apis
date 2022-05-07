@@ -10,13 +10,13 @@ import logConfig
 
 
 
-def UpdateProduct(req_obj):
+def UpdateProduct(req_params, req_obj):
     response = JsonResponse()
     session = Session() 
     product= {}
     try:
         print(req_obj)
-        product= (session.query(Product).filter(Product.id == int(req_obj.get('product_id')))
+        product= (session.query(Product).filter(Product.id == int(req_params.get('product_id')))
         .first())
         print(product)
       

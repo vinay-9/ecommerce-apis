@@ -17,12 +17,11 @@ def GetProduct(req_params):
     try:
         product= (session.query(Product).filter(Product.id == int(req_params['product_id'])).first())
         print(req_params)
-        session.add(product)
         
         if product is None:
-            # response.set_code(404)
             raise ValueError("Product not found")
-       
+        
+        session.add(product)
         print(product)
         print({**asdict(product)})
 

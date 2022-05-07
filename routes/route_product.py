@@ -54,7 +54,7 @@ add_product_model.add_argument(
 update_product_model = add_product_model.copy()
 # .RequestParser()
 update_product_model.add_argument(
-    "product_id", type=int, required=True, help="id of the product to be updated", location="form"
+    "product_id", type=int, required=True, help="id of the product to be updated", location="args"
 )
 # update_product_model.add_argument(
 #     "name", type=str, required=True, help="unique name of product", location="form"
@@ -108,7 +108,6 @@ class ProductApi(Resource):
     @api.expect(update_product_model)
     def put(self):
         request_body= validateParamsFromCheckList(request.form, [
-            "product_id",
             "name",
             "category_name",
             "description",
@@ -116,7 +115,11 @@ class ProductApi(Resource):
             "sell_price",
             "quantity"
         ])
-        output = UpdateProduct(request_body)
+        request_params= validateParamsFromCheckList(request.args, [
+            "product_id",
+        ])
+
+        output = UpdateProduct(request_params, request_body)
         return jsonify(output)
 
 
