@@ -3,10 +3,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-host = "localhost"
-port = "3306"
-username = "root"
-password = "root"
+host = "the host name"
+port = "port name"
+username = "------the username------------"
+password = "-----------the password-----------"
 db_name = "ecommerce"
 
 
